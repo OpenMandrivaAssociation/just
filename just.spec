@@ -52,6 +52,7 @@ Zsh command-line completion support for %{name}.
 
 %prep
 %autosetup -a1
+%cargo_prep -v vendor
 
 %build
 %cargo_build 
