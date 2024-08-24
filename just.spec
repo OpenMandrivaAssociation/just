@@ -62,7 +62,8 @@ mkdir completions
 ./target/release/just --completions zsh > completions/just.zsh
 
 %install
-%cargo_install --all-features
+%cargo_install 
+#--all-features
 install -Dm644 -T completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dm644 -T completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
 install -Dm644 -T completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
