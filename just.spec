@@ -54,7 +54,8 @@ Zsh command-line completion support for %{name}.
 %autosetup -a1
 
 %build
-%cargo_build --all-features
+%cargo_build 
+#--all-features
 mkdir completions
 ./target/release/just --completions bash > completions/just.bash
 ./target/release/just --completions fish > completions/just.fish
