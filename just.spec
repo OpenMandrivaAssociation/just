@@ -34,7 +34,7 @@ Bash command-line completion support for %{name}.
 Summary:        Fish Completion for %{name}
 Group:          System/Shells
 Supplements:    (%{name} and fish)
-Requires:       fish
+Recommends:       fish
 BuildArch:      noarch
 
 %description fish-completion
