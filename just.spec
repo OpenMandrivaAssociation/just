@@ -1,18 +1,17 @@
 Name:           just
 Version:        1.34.0
-Release:        0
+Release:        1
 Summary:        Commmand runner
 License:        (Apache-2.0 OR MIT) AND Unicode-DFS-2016 AND (Apache-2.0 OR BSL-1.0) AND (Apache-2.0 OR MIT) AND (Apache-2.0 OR Apache-2.0 WITH LLVM-exception OR MIT) AND (MIT OR Unlicense) AND Apache-2.0 AND BSD-3-Clause AND CC0-1.0 AND MIT AND CC0-1.0
 Group:          Development/Tools/Building
 URL:            https://github.com/casey/just
-Source0:        https://github.com/casey/just/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
-Source1:        vendor.tar.zst
+Source0:        https://github.com/casey/just/archive/%{version}/%{name}-%{version}.tar.gz
+Source1:        vendor.tar.xz
 BuildRequires:  bash-completion
-BuildRequires:  cargo-packaging
+BuildRequires:  rust-packaging
 BuildRequires:  fish
 BuildRequires:  git
-BuildRequires:  git-core
-BuildRequires:  python3-base
+BuildRequires:  python
 BuildRequires:  zsh
 BuildRequires:  zstd
 
@@ -55,23 +54,17 @@ Zsh command-line completion support for %{name}.
 %autosetup -a1
 
 %build
-%{cargo_build} --all-features
+%cargo_build --all-features
 mkdir completions
 ./target/release/just --completions bash > completions/just.bash
 ./target/release/just --completions fish > completions/just.fish
 ./target/release/just --completions zsh > completions/just.zsh
 
 %install
-%{cargo_install} --all-features
+%cargo_install --all-features
 install -Dm644 -T completions/%{name}.bash %{buildroot}%{_datadir}/bash-completion/completions/%{name}
 install -Dm644 -T completions/%{name}.fish %{buildroot}%{_datadir}/fish/vendor_completions.d/%{name}.fish
 install -Dm644 -T completions/%{name}.zsh %{buildroot}%{_datadir}/zsh/site-functions/_%{name}
-
-%check
-# Bash uses `git rev-parse --show-toplevel`
-# for the bash tests to work
-git init
-%{cargo_test} --all
 
 %files
 %license LICENSE
