@@ -9,7 +9,7 @@ Source0:        https://github.com/casey/just/archive/%{version}/%{name}-%{versi
 Source1:        vendor.tar.xz
 BuildRequires:  bash-completion
 BuildRequires:  rust-packaging
-BuildRequires:  fish
+#BuildRequires:  fish
 BuildRequires:  git
 BuildRequires:  python
 BuildRequires:  zsh
