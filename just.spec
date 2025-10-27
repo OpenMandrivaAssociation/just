@@ -57,7 +57,7 @@ Zsh command-line completion support for %{name}.
 %build
 %cargo_build 
 #--all-features
-mkdir completions
+#mkdir completions
 ./target/release/just --completions bash > completions/just.bash
 ./target/release/just --completions fish > completions/just.fish
 ./target/release/just --completions zsh > completions/just.zsh
